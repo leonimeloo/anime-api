@@ -20,7 +20,7 @@ export default function Home() {
     if (!search) return;
 
     try {
-      const response = await axios.get(`http://localhost:3000/api/example/anime/search/${search}`)
+      const response = await axios.get(process.env.API_URL + search);
       
       setResultData(response.data)
 
