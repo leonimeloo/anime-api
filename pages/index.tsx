@@ -20,7 +20,7 @@ export default function Home() {
     if (!search) return;
 
     try {
-      const response = await axios.get(process.env.API_URL + search);
+      const response = await axios.get(`https://happi.vercel.app/api/example/anime/search/${search}`);
       
       setResultData(response.data)
 
