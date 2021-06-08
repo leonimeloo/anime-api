@@ -26,6 +26,7 @@ export default function Home() {
         setResultData(response.data)
       } else {
         const response = await axios.get(process.env.API_URL + `${search}`);
+        console.log(process.env.API_URL);
         setResultData(response.data)
       }
       
