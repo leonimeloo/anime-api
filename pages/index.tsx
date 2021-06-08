@@ -22,11 +22,9 @@ export default function Home() {
     try {
       if (process.env.NODE_ENV === 'development') {
         const response = await axios.get(`http://localhost:3000/api/example/anime/search/${search}`);
-        console.log(process.env.API_URL);
         setResultData(response.data)
       } else {
         const response = await axios.get(process.env.API_URL + `${search}`);
-        console.log(process.env.API_URL);
         setResultData(response.data)
       }
       
