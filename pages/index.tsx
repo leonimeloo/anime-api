@@ -14,7 +14,7 @@ export default function Home() {
   const [search, setSearch] = useState('');
   const [resultData, setResultData] = useState(null);
 
-  const handleLogin = async event => {
+  const handleSearch = async event => {
     event.preventDefault();
   
     if (!search) return;
@@ -24,12 +24,7 @@ export default function Home() {
         const response = await axios.get(`http://localhost:3000/api/example/anime/search/${search}`);
         setResultData(response.data)
       } else {
-        const response = await axios.get(process.env.API_URL + `${search}`, {
-        headers: {
-            "Access-Control-Allow-Origin" : "*",
-            "Access-Control-Allow-Credentials" : true
-          },
-        });
+        const response = await axios.get(process.env.API_URL + `${search}`);
         setResultData(response.data)
       }
       
@@ -63,7 +58,7 @@ export default function Home() {
         <div className={styles.apiSearch}>
           <p>Teste a API pesquisando um anime/mangá:</p>
           <input type="text" name="query" placeholder="Pesquise por um nome de anime ou mangá, ex: jujutsu kaisen." value={search} onChange={e => setSearch(e.target.value)}></input>
-          <button onClick={handleLogin} type="submit">GO</button>
+          <button onClick={handleSearch} type="submit">GO</button>
           <p>{ resultData === null ? 'O resultado aparecerá abaixo:' : 'Resultado:'}</p>
           {resultData === null ? <span /> : <SyntaxHighlighter language="json" style={dracula} showLineNumbers={true}>{ JSON.stringify(resultData, null, '\t') }</SyntaxHighlighter> }
         </div>
