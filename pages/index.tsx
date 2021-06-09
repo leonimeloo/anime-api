@@ -24,7 +24,12 @@ export default function Home() {
         const response = await axios.get(`http://localhost:3000/api/example/anime/search/${search}`);
         setResultData(response.data)
       } else {
-        const response = await axios.get(process.env.API_URL + `${search}`);
+        const response = await axios.get(process.env.API_URL + `${search}`, {
+        headers: {
+            "Access-Control-Allow-Origin" : "*",
+            "Access-Control-Allow-Credentials" : true
+          },
+        });
         setResultData(response.data)
       }
       
